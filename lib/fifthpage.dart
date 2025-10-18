@@ -1,28 +1,55 @@
 import 'package:flutter/material.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
-  @override
-  MyStatefulWidgetState createState() => MyStatefulWidgetState();
+void main() {
+  runApp(MaterialApp(home: StateExample()));
 }
 
-class MyStatefulWidgetState extends State<MyStatefulWidget> {
+class StateExample extends StatefulWidget {
+  const StateExample({super.key});
+
+  @override
+  StateExampleState createState() => StateExampleState();
+}
+
+class StateExampleState extends State<StateExample> {
   int counter = 0;
 
-  void _incrementCounter() {
+  void _increment() {
     setState(() {
       counter++;
     });
   }
 
+  void _decrement() {
+    setState(() {
+      counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Counter: $counter'),
-        ElevatedButton(onPressed: _incrementCounter, child: Text('Tambah')),
-      ],
+    return Scaffold(
+      appBar: AppBar(title: Text("Pertemuan 7: State Management Dasar")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Nilai Counter: $counter",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: _decrement, child: Text("-")),
+                SizedBox(width: 20),
+                ElevatedButton(onPressed: _increment, child: Text("+")),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
